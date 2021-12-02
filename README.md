@@ -3,4 +3,6 @@
 
 ### Remarks for build
 
-* get wv2 source from [sourceforge.net](https://sourceforge.net/p/wvware/svn/HEAD/tree/wv2-trunk/)
+* wv2 
+
+`2.1.0.8` from [TidyHuang/WV2](https://github.com/TidyHuang/WV2) compiles with unix make files.
