@@ -3,6 +3,6 @@
 
 ### Remarks for build
 
-* wv2 
+* [wv2](https://sourceforge.net/projects/wvware/files/wv2/) on sourceforge.net
 
-`2.1.0.8` from [TidyHuang/WV2](https://github.com/TidyHuang/WV2) compiles with unix make files.
+* `2.1.0.8` from [TidyHuang/WV2](https://github.com/TidyHuang/WV2) compiles with unix make files.
