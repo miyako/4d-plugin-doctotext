@@ -1,0 +1,11 @@
+{
+    "name": "DocToText",
+    "id": 20000,
+    "commands": [
+        {
+            "theme": "DocToText",
+            "syntax": "DocToText(&O;&J):J",
+            "threadSafe": true
+        }
+    ]
+}
