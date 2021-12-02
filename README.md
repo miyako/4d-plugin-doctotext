@@ -3,13 +3,9 @@
 
 ### Remarks for build
 
-* get [wv2-0.4.2](https://sourceforge.net/projects/wvware/files/wv2/) on sourceforge.net
-  * remove check for modern iconv in cmakelists.txt.
-
-* get [libcharsetdetect](https://github.com/batterseapower/libcharsetdetect)
-
-* get [htmlcxx](http://htmlcxx.sourceforge.net)
-  * copy `ltmain.sh` from `libtools` 
+* [libwv2](https://sourceforge.net/projects/wvware/files/wv2/)
+* [libcharsetdetect](https://github.com/batterseapower/libcharsetdetect)
+* [htmlcxx](http://htmlcxx.sourceforge.net)
   
 ### Features
 
