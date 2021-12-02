@@ -10,8 +10,6 @@
 
 * get [htmlcxx](http://htmlcxx.sourceforge.net)
 
-* `2.1.0.8` from [TidyHuang/WV2](https://github.com/TidyHuang/WV2) compiles with unix make files but creates small library with no 3rd party dependencies. also error on arm. probably need to rerun automake or something.
-
 ### Features
 
 extract plain text from various file types:
