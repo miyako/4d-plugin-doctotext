@@ -1,7 +1,7 @@
 # 4d-plugin-doctotext
 4D implementation of [DocToText](http://silvercoders.com/en/products/doctotext/).
 
-### Remarks for build
+### Dependencies
 
 * [libwv2](https://sourceforge.net/projects/wvware/files/wv2/)
 * [libcharsetdetect](https://github.com/batterseapower/libcharsetdetect)
