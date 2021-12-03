@@ -189,10 +189,10 @@
 		"stamp": "2021-12-02T12:20:22.105Z"
 	},
 	"Sources/Methods/TEST_ja.4dm": {
-		"startSelection": 7,
-		"endSelection": 7,
-		"firstSelectedLine": 10,
-		"lastSelectedLine": 10,
+		"startSelection": 61,
+		"endSelection": 0,
+		"firstSelectedLine": 5,
+		"lastSelectedLine": 4,
 		"folding": [],
 		"bookmarks": [],
 		"stamp": "2021-12-03T07:12:14.650Z"
