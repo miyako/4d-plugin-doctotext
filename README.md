@@ -3,7 +3,7 @@
 
 <img width="797" alt="ss" src="https://user-images.githubusercontent.com/1725068/144632527-14f2e26d-db2c-45d8-860e-a677092a8602.png">
 
-### Abstact
+### Abstract
 
 the goal of this project is to support legacy Microsoft Word documents with the `.doc` file extension.
 
