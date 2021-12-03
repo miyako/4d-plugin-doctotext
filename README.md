@@ -29,7 +29,7 @@ status:=DocToText (path;options;attachments)
 
 Parameter|Type|Description
 ------------|------|----
-path|Text|platform path
+document|BLOB|
 options|Object|see below
 attachments|Array BLOB|
 status|Object|
@@ -43,4 +43,5 @@ table | Text | `table` (default) `row` `col`
 url | Text | `underscored` (default) `text` `extended` 
 list | Text |` * ` (default) or any string
 verbose | Boolean |
+fallback | Boolean |
 format | Text | `.doc` (default) `.rtf` `.docx` `.pptx` `.xlsx` `.fodt` `.fods` `.fodp` `.fodg` `.odt` `.ods` `.odp` `.odg` `.ppt` `.xls` `.xlsb` `.pages` `.numbers` `.key` `.html` `.pdf` `.eml`
