@@ -7,11 +7,13 @@ the goal of this project is to support legacy Microsoft Word documents with the 
 
 * import
 
-`wv2`, the successor to `wv`, can load and parse Word 2000, 97, 95 and 6 file formats. it depends on `zlib`, `libgsf`, `libbz2`, `libxml2`, `libiconv` and `glib`, which in turns depends on `libffi`  and `libpcre`.
+[`wv`](http://wvware.sourceforge.net) can load and parse Word 2000, 97, 95 and 6 file formats. it can also convert `.doc` to formats such as `.rtf`, `.txt`, `.tex`, `.pdf` or `.html. see [unofficial mirror](https://github.com/remram44/wvware).
+
+`wv2` is the successor to `wv`. it depends on `zlib`, `libgsf`, `libbz2`, `libxml2`, `libiconv` and `glib`, which in turns depends on `libffi`  and `libpcre`.
 
 `doctotext` is a document converter that uses `wv2` to import `.doc` files. additionally it uses `libcharsetdetect`, `htmlcxx`, `libmimetic`, `minizip` to support other input formats. the outout format is always plain text.
 
-it seems the older `wv` project had more export options. see [unofficial mirror](https://github.com/remram44/wvware).
+it seems the older `wv` project had more export options. 
 
 ### Dependencies
 
