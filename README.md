@@ -11,6 +11,8 @@ the goal of this project is to support legacy Microsoft Word documents with the 
 
 `doctotext` is a document converter that uses `wv2` to import `.doc` files. additionally it uses `libcharsetdetect`, `htmlcxx`, `libmimetic`, `minizip` to support other input formats. the outout format is always plain text.
 
+it seems the older `wv` project had more export options. see [unofficial mirror](https://github.com/remram44/wvware).
+
 ### Dependencies
 
 * [libwv2](https://sourceforge.net/projects/wvware/files/wv2/)
