@@ -19,16 +19,3 @@ the goal of this project is to support legacy Microsoft Word documents with the 
 
 extract plain text from various file types:
 
-* PARSER_AUTO
-* PARSER_RTF
-* PARSER_ODF_OOXML
-* PARSER_XLS
-* PARSER_DOC
-* PARSER_PPT
-* PARSER_HTML
-* PARSER_IWORK
-* PARSER_XLSB
-* PARSER_PDF
-* PARSER_TXT
-* PARSER_EML
-* PARSER_ODFXML
