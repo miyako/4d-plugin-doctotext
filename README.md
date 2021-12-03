@@ -1,16 +1,20 @@
 # 4d-plugin-doctotext
 4D implementation of [DocToText](http://silvercoders.com/en/products/doctotext/).
 
-### Remarks for build
+### Abstact
 
-* get [wv2-0.4.2](https://sourceforge.net/projects/wvware/files/wv2/) on sourceforge.net
-  * remove check for modern iconv in cmakelists.txt.
+the goal of this project is to support legacy Microsoft Word documents with the `.doc` file extension.
 
-* get [libcharsetdetect](https://github.com/batterseapower/libcharsetdetect)
+* [`wv`](https://sourceforge.net/projects/wvware/files/wv/) can load and parse Word 2000, 97, 95 and 6 file formats. 
 
-* get [htmlcxx](http://htmlcxx.sourceforge.net)
-<<<<<<< HEAD
+* [`wvware`](http://wvware.sourceforge.net) is a document converter that uses `wv` to import `.doc` files. the outout format includes `.rtf`, `.txt`, `.tex`, `.pdf` or `.html`. see [unofficial mirror](https://github.com/remram44/wvware).
 
+* [`abiword`](http://www.abisource.com) is a word processor that uses `wv` to import `.doc` files. it has a command line interface and server mode, similar to OpenOffice, that can be uses as a document converter. `wvware` deprecated its own suite of converters in favour of `abiword`.
+
+* [`wv2`](https://sourceforge.net/projects/wvware/files/wv2/) is the successor to `wv`. it depends on `zlib`, `libgsf`, `libbz2`, `libxml2`, `libiconv` and `glib`, which in turns depends on `libffi`  and `libpcre`.
+
+* [`doctotext`](http://silvercoders.com/en/products/doctotext/) is a document converter that uses `wv2` to import `.doc` files. additionally it uses [`libcharsetdetect`](https://github.com/batterseapower/libcharsetdetect), [`htmlcxx`](http://htmlcxx.sourceforge.net), `libmimetic`, `minizip` to support other input formats. the outout format is always plain text.
+  
 ### Features
 
 extract plain text from various file types:
@@ -28,8 +32,3 @@ extract plain text from various file types:
 * PARSER_TXT
 * PARSER_EML
 * PARSER_ODFXML
-=======
-  * copy `ltmain.sh` from `libtools` 
-  
-* `2.1.0.8` from [TidyHuang/WV2](https://github.com/TidyHuang/WV2) compiles with unix make files but creates small library with no 3rd party dependencies. also error on arm. probably need to rerun automake or something.
->>>>>>> parent of 4614093 (Update README.md)
