@@ -42,6 +42,6 @@ xml | Text |`parse` (default) `fix` `strip`
 table | Text | `table` (default) `row` `col` 
 url | Text | `underscored` (default) `text` `extended` 
 list | Text |` * ` (default) or any string
-verbose | Boolean |
-fallback | Boolean |
+verbose | Boolean |`false` (default)
+fallback | Boolean |`false` (default)
 format | Text | `.doc` (default) `.rtf` `.docx` `.pptx` `.xlsx` `.fodt` `.fods` `.fodp` `.fodg` `.odt` `.ods` `.odp` `.odg` `.ppt` `.xls` `.xlsb` `.pages` `.numbers` `.key` `.html` `.pdf` `.eml`
