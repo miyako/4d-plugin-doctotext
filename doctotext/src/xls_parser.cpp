@@ -894,7 +894,7 @@ void XLSParser::getLinks(std::vector<Link>& links)
 std::string XLSParser::plainText(const FormattingStyle& formatting)
 {
 	impl->m_error = false;
-	ThreadSafeOLEStorage* storage;
+	ThreadSafeOLEStorage* storage = NULL;
 	if (impl->m_buffer)
 		storage = new ThreadSafeOLEStorage(impl->m_buffer, impl->m_buffer_size);
 	else
@@ -906,7 +906,24 @@ std::string XLSParser::plainText(const FormattingStyle& formatting)
 		delete storage;
 		return "";
 	}
-	std::string text = plainText(*storage, formatting);
+    std::string text;
+    std::vector<std::string> dirs;
+    storage->getStreamsAndStoragesList(dirs);
+        
+    ThreadSafeOLEStreamReader* reader = (ThreadSafeOLEStreamReader*)storage->createStreamReader("Workbook");
+    
+    if (reader == NULL)
+        reader = (ThreadSafeOLEStreamReader*)storage->createStreamReader("Book");
+    if (reader == NULL)
+    {
+        *impl->m_log_stream << "Error opening " << impl->m_file_name << " as OLE file.\n";
+        impl->m_error = true;
+        delete storage;
+        return "";
+    }
+    impl->parseXLS(*reader, text);
+    storage->close();//was missing
+    delete reader;//this crashes!
 	delete storage;
 	return text;
 }
@@ -914,20 +931,22 @@ std::string XLSParser::plainText(const FormattingStyle& formatting)
 std::string XLSParser::plainText(ThreadSafeOLEStorage& storage, const FormattingStyle& formatting)
 {
 	impl->m_error = false;
-	ThreadSafeOLEStreamReader* reader = (ThreadSafeOLEStreamReader*)storage.createStreamReader("Workbook");
-	if (reader == NULL)
-		reader = (ThreadSafeOLEStreamReader*)storage.createStreamReader("Book");
-	if (reader == NULL)
-	{
-		*impl->m_log_stream << "Error opening " << impl->m_file_name << " as OLE file.\n";
-		impl->m_error = true;
-		return "";
-	}
+//	ThreadSafeOLEStreamReader* reader = (ThreadSafeOLEStreamReader*)storage.createStreamReader("Workbook");
+//	if (reader == NULL)
+//		reader = (ThreadSafeOLEStreamReader*)storage.createStreamReader("Book");
+//	if (reader == NULL)
+//	{
+//		*impl->m_log_stream << "Error opening " << impl->m_file_name << " as OLE file.\n";
+//		impl->m_error = true;
+//		return "";
+//	}
 	std::string text;
-	impl->parseXLS(*reader, text);
-	delete reader;
+//	impl->parseXLS(*reader, text);
+//    delete reader;
+    
 	return text;
 }
+
 
 Metadata XLSParser::metaData()
 {

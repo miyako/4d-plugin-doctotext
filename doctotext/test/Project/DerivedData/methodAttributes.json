@@ -1,5 +1,8 @@
 ﻿{
 	"methods": {
+		"TEST_ja": {
+			"timeStamp": "2021-12-03T07:12:14.650Z"
+		},
 		"generate_file_from_template": {
 			"timeStamp": "2019-07-29T04:26:04.000Z",
 			"attributes": {
@@ -34,8 +37,8 @@
 				"preemptive": "capable"
 			}
 		},
-		"TEST": {
-			"timeStamp": "2021-12-02T15:29:54.123Z"
+		"TEST_all": {
+			"timeStamp": "2021-12-03T06:31:27.379Z"
 		},
 		"generate_project": {
 			"timeStamp": "2021-12-02T12:20:38.009Z"
