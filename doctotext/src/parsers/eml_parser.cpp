@@ -337,22 +337,26 @@ Metadata EMLParser::metaData()
 		impl->m_error = true;
 		return metadata;
 	}
+    
 	impl->m_data_stream->seekg(0, std::ios_base::beg);
 	MimeEntity mime_entity(*impl->m_data_stream);
-	Header header = mime_entity.header();
-	metadata.setAuthor(header.from().str());
-	DateTime creation_date(header.field("Date").value());
-	metadata.setCreationDate(rfc_date_time_to_tm(creation_date));
-
-	//in EML file format author is visible under key "From". And creation date is visible under key "Data".
+    Header header = mime_entity.header();
+	
+    DateTime creation_date(header.field("Date").value());
+    tm creation_date_tm = rfc_date_time_to_tm(creation_date);
+    metadata.setCreationDate(creation_date_tm);
+    metadata.addField("Date", creation_date_tm);
+    
+	//in EML file format author is visible under key "From". And creation date is visible under key "Date".
 	//So, should I repeat the same values or skip them?
-	metadata.addField("From", header.from().str());
-	metadata.addField("Date", rfc_date_time_to_tm(creation_date));
+
+    std::string from = header.from().str();
+    metadata.setAuthor(from);
+    metadata.addField("From", from);
 
 	std::string to = header.to().str();
 	if (!to.empty())
 		metadata.addField("To", to);
-
 	std::string subject = header.subject();
 	if (!subject.empty())
 		metadata.addField("Subject", subject);
@@ -371,15 +375,17 @@ Metadata EMLParser::metaData()
 	std::string content_id = header.contentId().str();
 	if (!content_id.empty())
 		metadata.addField("Content-ID", content_id);
-	std::string message_id = header.messageid().str();
-	if (!message_id.empty())
-		metadata.addField("Message-ID", message_id);
-	std::string reply_to = header.replyto().str();
-	if (!reply_to.empty())
-		metadata.addField("Reply-To", reply_to);
-	std::string sender = header.sender().str();
-	if (!sender.empty())
-		metadata.addField("Sender", sender);
+    std::string message_id = header.messageid().str();
+    if (!message_id.empty())
+        metadata.addField("Message-ID", message_id);
+    std::string reply_to = header.replyto().str();
+    if (!reply_to.empty())
+        metadata.addField("Reply-To", reply_to);
+    std::string sender = header.sender().str();
+    if (!sender.empty())
+        metadata.addField("Sender", sender);
+    
+    return metadata;
 }
 
 bool EMLParser::error()

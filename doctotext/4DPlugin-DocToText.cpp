@@ -5,7 +5,7 @@
  #	Project :  DocToText
  #	author : miyako
  #	2021/12/02
- #  
+ #
  # --------------------------------------------------------------------------------*/
 
 #include "4DPlugin-DocToText.h"
@@ -14,23 +14,23 @@
 
 void PluginMain(PA_long32 selector, PA_PluginParameters params) {
     
-	try
-	{
+    try
+    {
         switch(selector)
         {
-			// ---  DocToText
-            
-			case 1 :
-				DocToText(params);
-				break;
-
+                // ---  DocToText
+                
+            case 1 :
+                DocToText(params);
+                break;
+                
         }
-
-	}
-	catch(...)
-	{
-
-	}
+        
+    }
+    catch(...)
+    {
+        
+    }
 }
 
 #pragma mark -
@@ -54,157 +54,169 @@ static void convert_path(CUTF16String& u16, std::string& u8) {
 }
 
 void DocToText(PA_PluginParameters params) {
-
-    PA_Unistring *u = PA_GetStringParameter(params, 1);
-    CUTF16String u16(u->fString, u->fLength);
     
-    std::string path;
-    
-#if VERSIONWIN
-    u16_to_u8(u16, path);
-#else
-    convert_path(u16, path);
-#endif
+    /*
+     PA_Unistring *u = PA_GetStringParameter(params, 1);
+     CUTF16String u16(u->fString, u->fLength);
+     
+     std::string path;
+     
+     #if VERSIONWIN
+     u16_to_u8(u16, path);
+     #else
+     convert_path(u16, path);
+     #endif
+     */
     
     PA_ObjectRef status = PA_CreateObject();
     ob_set_b(status, L"success", false);
     
     PA_Variable Param3 = PA_CreateVariable(eVK_ArrayBlob);
     
-    PA_Handle h = PA_GetBlobHandleParameter(params, 1);
+    PlainTextExtractor::ParserType parser_type = PlainTextExtractor::PARSER_DOC;
     
-    if(h) {
+    bool verbose = false;
+    bool fallback = false;
+    
+    XmlParseMode mode = PARSE_XML;
+    
+    FormattingStyle fmt;
+    fmt.table_style = TABLE_STYLE_TABLE_LOOK;
+    fmt.list_style.setPrefix(" * ");
+    fmt.url_style = URL_STYLE_UNDERSCORED;
+    
+    PA_ObjectRef options = PA_GetObjectParameter(params, 2);
+    
+    if(options) {
         
-        PlainTextExtractor::ParserType parser_type = PlainTextExtractor::PARSER_DOC;
-        
-        bool verbose = false;
-        XmlParseMode mode = PARSE_XML;
-        FormattingStyle fmt;
-        fmt.table_style = TABLE_STYLE_TABLE_LOOK;
-        fmt.list_style.setPrefix(" * ");
-        fmt.url_style = URL_STYLE_UNDERSCORED;
-        
-        PA_ObjectRef options = PA_GetObjectParameter(params, 2);
-        if(options) {
-            
-            CUTF8String xml;
-            if(ob_get_s(options, L"xml", &xml)) {
-                if(xml == (const uint8_t *)"fix"){
-                    mode = FIX_XML;
-                }
-                if(xml == (const uint8_t *)"strip"){
-                    mode = STRIP_XML;
-                }
+        CUTF8String xml;
+        if(ob_get_s(options, L"xml", &xml)) {
+            if(xml == (const uint8_t *)"fix"){
+                mode = FIX_XML;
             }
-            
-            CUTF8String table;
-            if(ob_get_s(options, L"table", &table)) {
-                if(table == (const uint8_t *)"row"){
-                    fmt.table_style = TABLE_STYLE_ONE_ROW;
-                }
-                if(xml == (const uint8_t *)"col"){
-                    fmt.table_style = TABLE_STYLE_ONE_COL;
-                }
-            }
-            
-            CUTF8String url;
-            if(ob_get_s(options, L"url", &url)) {
-                if(url == (const uint8_t *)"text"){
-                    fmt.url_style = URL_STYLE_TEXT_ONLY;
-                }
-                if(url == (const uint8_t *)"extended"){
-                    fmt.url_style = URL_STYLE_EXTENDED;
-                }
-            }
-            
-            CUTF8String list;
-            if(ob_get_s(options, L"list", &list)) {
-                fmt.list_style.setPrefix((const char *)list.c_str());
-            }
-
-            verbose = ob_get_b(options, L"verbose");
-            
-            CUTF8String format;
-            if(ob_get_s(options, L"format", &format)) {
-                
-                if(format == (const uint8_t *)".rtf"){
-                    parser_type = PlainTextExtractor::PARSER_RTF;goto set_parser_type;
-                }
-                
-                if(format == (const uint8_t *)".fodp"){
-                    parser_type = PlainTextExtractor::PARSER_ODFXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".fods"){
-                    parser_type = PlainTextExtractor::PARSER_ODFXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".fodt"){
-                    parser_type = PlainTextExtractor::PARSER_ODFXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".fodg"){
-                    parser_type = PlainTextExtractor::PARSER_ODFXML;goto set_parser_type;
-                }
-                
-                if(format == (const uint8_t *)".odt"){
-                    parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".ods"){
-                    parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".odp"){
-                    parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".odg"){
-                    parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto set_parser_type;
-                }
-                
-                if(format == (const uint8_t *)".docx"){
-                    parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".pptx"){
-                    parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".xlsx"){
-                    parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto set_parser_type;
-                }
-
-                if(format == (const uint8_t *)".doc"){
-                    parser_type = PlainTextExtractor::PARSER_DOC;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".ppt"){
-                    parser_type = PlainTextExtractor::PARSER_PPT;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".xls"){
-                    parser_type = PlainTextExtractor::PARSER_XLS;goto set_parser_type;
-                }
-
-                if(format == (const uint8_t *)".xlsb"){
-                    parser_type = PlainTextExtractor::PARSER_XLSB;goto set_parser_type;
-                }
-                
-                if(format == (const uint8_t *)".pages"){
-                    parser_type = PlainTextExtractor::PARSER_IWORK;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".numbers"){
-                    parser_type = PlainTextExtractor::PARSER_IWORK;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".key"){
-                    parser_type = PlainTextExtractor::PARSER_IWORK;goto set_parser_type;
-                }
-
-                if(format == (const uint8_t *)".html"){
-                    parser_type = PlainTextExtractor::PARSER_HTML;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".pdf"){
-                    parser_type = PlainTextExtractor::PARSER_PDF;goto set_parser_type;
-                }
-                if(format == (const uint8_t *)".eml"){
-                    parser_type = PlainTextExtractor::PARSER_EML;goto set_parser_type;
-                }
+            if(xml == (const uint8_t *)"strip"){
+                mode = STRIP_XML;
             }
         }
-     
-    set_parser_type:
-        (0);
+        
+        CUTF8String table;
+        if(ob_get_s(options, L"table", &table)) {
+            if(table == (const uint8_t *)"row"){
+                fmt.table_style = TABLE_STYLE_ONE_ROW;
+            }
+            if(xml == (const uint8_t *)"col"){
+                fmt.table_style = TABLE_STYLE_ONE_COL;
+            }
+        }
+        
+        CUTF8String url;
+        if(ob_get_s(options, L"url", &url)) {
+            if(url == (const uint8_t *)"text"){
+                fmt.url_style = URL_STYLE_TEXT_ONLY;
+            }
+            if(url == (const uint8_t *)"extended"){
+                fmt.url_style = URL_STYLE_EXTENDED;
+            }
+        }
+        
+        CUTF8String list;
+        if(ob_get_s(options, L"list", &list)) {
+            fmt.list_style.setPrefix((const char *)list.c_str());
+        }
+        
+        verbose = ob_get_b(options, L"verbose");
+        fallback = ob_get_b(options, L"fallback");
+        
+        CUTF8String format;
+        if(ob_get_s(options, L"format", &format)) {
+            
+            if(format == (const uint8_t *)".rtf"){
+                parser_type = PlainTextExtractor::PARSER_RTF;goto run_converter;
+            }
+            
+            if(format == (const uint8_t *)".fodp"){
+                parser_type = PlainTextExtractor::PARSER_ODFXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".fods"){
+                parser_type = PlainTextExtractor::PARSER_ODFXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".fodt"){
+                parser_type = PlainTextExtractor::PARSER_ODFXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".fodg"){
+                parser_type = PlainTextExtractor::PARSER_ODFXML;goto run_converter;
+            }
+            
+            if(format == (const uint8_t *)".odt"){
+                parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".ods"){
+                parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".odp"){
+                parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".odg"){
+                parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto run_converter;
+            }
+            
+            if(format == (const uint8_t *)".docx"){
+                parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".pptx"){
+                parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".xlsx"){
+                parser_type = PlainTextExtractor::PARSER_ODF_OOXML;goto run_converter;
+            }
+            
+            if(format == (const uint8_t *)".doc"){
+                parser_type = PlainTextExtractor::PARSER_DOC;goto run_converter;
+            }
+            if(format == (const uint8_t *)".ppt"){
+                parser_type = PlainTextExtractor::PARSER_PPT;goto run_converter;
+            }
+            if(format == (const uint8_t *)".xls"){
+                parser_type = PlainTextExtractor::PARSER_XLS;goto run_converter;
+            }
+            
+            if(format == (const uint8_t *)".xlsb"){
+                parser_type = PlainTextExtractor::PARSER_XLSB;goto run_converter;
+            }
+            
+            if(format == (const uint8_t *)".pages"){
+                parser_type = PlainTextExtractor::PARSER_IWORK;goto run_converter;
+            }
+            if(format == (const uint8_t *)".numbers"){
+                parser_type = PlainTextExtractor::PARSER_IWORK;goto run_converter;
+            }
+            if(format == (const uint8_t *)".key"){
+                parser_type = PlainTextExtractor::PARSER_IWORK;goto run_converter;
+            }
+            
+            if(format == (const uint8_t *)".html"){
+                parser_type = PlainTextExtractor::PARSER_HTML;goto run_converter;
+            }
+            if(format == (const uint8_t *)".pdf"){
+                parser_type = PlainTextExtractor::PARSER_PDF;goto run_converter;
+            }
+            if(format == (const uint8_t *)".eml"){
+                parser_type = PlainTextExtractor::PARSER_EML;goto run_converter;
+            }
+        }
+    }
+    
+run_converter:
+    
+    void *bytes = NULL;
+    
+    PA_long32 len = PA_GetBlobParameter(params, 1, bytes);
+    
+    if(len)
+    {
+        std::vector<uint8_t>buf(len);
+        bytes = &buf[0];
+        PA_GetBlobParameter(params, 1, bytes);
         
         PlainTextExtractor extractor(parser_type);
         if (verbose)
@@ -215,16 +227,13 @@ void DocToText(PA_PluginParameters params) {
         
         extractor.setFormattingStyle(fmt);
         
-        /*
-         
-         it seems the buffer constructor just doesn't work
-         
-         extractor.processFile(PA_LockHandle(h), PA_GetHandleSize(h), text)
-         */
-        
         std::string text;
         
-        if (extractor.processFile(parser_type, false, path.c_str(), text)) {
+        if (extractor.processFile(parser_type,
+                                  fallback,
+                                  (const char *)bytes,
+                                  len,
+                                  text)) {
             
             ob_set_b(status, L"success", true);
             ob_set_s(status, L"text", text.c_str());
@@ -267,7 +276,7 @@ void DocToText(PA_PluginParameters params) {
                     
                     PA_ResizeArray(&Param3, i);
                     PA_SetBlobInArray(Param3, i, element.uValue.fBlob);
-
+                    
                     PA_ObjectRef f = PA_CreateObject();
                     std::map<std::string, Variant> variables = attachments[i].getFields();
                     for (std::map<std::string, Variant>::iterator it = variables.begin(); it != variables.end(); ++it)
@@ -285,8 +294,11 @@ void DocToText(PA_PluginParameters params) {
         
         Metadata meta;
         
-        if (extractor.extractMetadata(path.c_str(), meta))
-        {
+        if (extractor.extractMetadata(parser_type,
+                                      fallback,
+                                      (const char *)bytes,
+                                      len,
+                                      meta)) {
             
             PA_ObjectRef m = PA_CreateObject();
             ob_set_s(m, L"author", meta.author());
@@ -297,17 +309,16 @@ void DocToText(PA_PluginParameters params) {
             ob_set_n(m, L"authorType", meta.authorType());
             ob_set_n(m, L"pageCountType", meta.pageCountType());
             ob_set_n(m, L"wordCountType", meta.wordCountType());
-
+            
             ob_set_s(m, L"creationDate", date_to_string(meta.creationDate()).c_str());
             ob_set_s(m, L"lastModificationDate", date_to_string(meta.lastModificationDate()).c_str());
-
+            
             ob_set_n(m, L"lastModifiedByType", meta.lastModifiedByType());
             ob_set_n(m, L"lastModificationDateType", meta.lastModificationDateType());
-
+            
             ob_set_o(status, L"meta", m);
         }
-            
-        PA_UnlockHandle(h);
+        
     }
     
     PA_SetVariableParameter(params, 3, Param3, 0);
@@ -329,7 +340,7 @@ static void u16_to_u8(CUTF16String& u16, std::string& u8) {
     }else{
         u8 = std::string((const char *)"");
     }
-
+    
 #else
     CFStringRef str = CFStringCreateWithCharacters(kCFAllocatorDefault, (const UniChar *)u16.c_str(), u16.length());
     if(str){

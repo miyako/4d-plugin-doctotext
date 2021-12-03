@@ -1,15 +1,22 @@
 ﻿{
 	"editors": [
 		{
-			"type": "method",
-			"id": 2147483647,
-			"codeDescriptor": {
-				"type": 1,
-				"methodName": "TEST_ja"
-			}
+			"type": "form",
+			"id": 1,
+			"formName": "TEST"
 		},
 		{
 			"type": "explorer"
+		},
+		{
+			"type": "method",
+			"id": 2147483636,
+			"codeDescriptor": {
+				"type": 2,
+				"formName": "TEST",
+				"objectName": "lb.files",
+				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/lb.files.4dm"
+			}
 		}
 	]
 }

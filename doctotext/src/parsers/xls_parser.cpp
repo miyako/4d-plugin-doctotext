@@ -881,7 +881,9 @@ bool XLSParser::isXLS()
 		delete storage;
 		return false;
 	}
-	delete reader;
+    
+    storage->close();//was missing
+    delete reader;//this crashes!
 	delete storage;
 	return true;
 }

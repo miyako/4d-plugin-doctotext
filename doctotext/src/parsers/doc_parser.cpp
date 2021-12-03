@@ -683,7 +683,7 @@ bool DOCParser::isDOC()
 		storage = new ThreadSafeOLEStorage(impl->m_buffer, impl->m_buffer_size);
 	else
 		storage = new ThreadSafeOLEStorage(impl->m_file_name);
-	SharedPtr<Parser> parser = ParserFactory::createParser(storage->name());
+	SharedPtr<Parser> parser = ParserFactory::createParser((const unsigned char *)impl->m_buffer, (size_t)impl->m_buffer_size);
 	impl->restoreCerr();
 	if (!parser || !parser->isOk())
 	{
@@ -766,7 +766,7 @@ std::string DOCParser::plainText(const FormattingStyle& formatting)
 	storage->leaveDirectory();
 	curr_state.obj_texts_iter = curr_state.obj_texts.begin();
 	impl->modifyCerr();
-	SharedPtr<Parser> parser = ParserFactory::createParser(storage->name());
+    SharedPtr<Parser> parser = ParserFactory::createParser((const unsigned char *)impl->m_buffer, (size_t)impl->m_buffer_size);
 	impl->restoreCerr();
 	if (!parser || !parser->isOk())
 	{

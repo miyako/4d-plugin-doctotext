@@ -4,7 +4,7 @@
     "commands": [
         {
             "theme": "DocToText",
-            "syntax": "DocToText(&T;&J;&Y):J",
+            "syntax": "DocToText(&O;&J;&Y):J",
             "threadSafe": true
         }
     ]

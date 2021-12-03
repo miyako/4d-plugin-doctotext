@@ -156,8 +156,8 @@
 		"height": 757
 	},
 	"Sources/Methods/TEST_ja.4dm": {
-		"left": 300,
-		"top": 562,
+		"left": 592,
+		"top": 268,
 		"width": 877,
 		"height": 637
 	},
@@ -166,5 +166,17 @@
 		"top": 277,
 		"width": 877,
 		"height": 637
+	},
+	"Sources/Forms/TEST/method.4dm": {
+		"left": 300,
+		"top": 562,
+		"width": 877,
+		"height": 637
+	},
+	"Sources/Forms/TEST/ObjectMethods/lb.files.4dm": {
+		"left": 176,
+		"top": 400,
+		"width": 812,
+		"height": 478
 	}
 }
