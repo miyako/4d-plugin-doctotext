@@ -25,7 +25,7 @@ extract plain text from various file types:
 status:=DocToText (path;options;attachments)
 ```
 
-Property|Type|Description
+Parameter|Type|Description
 ------------|------|----
 path|Text|platform path
 options|Object|see below
