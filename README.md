@@ -7,9 +7,9 @@ the goal of this project is to support legacy Microsoft Word documents with the 
 
 * import
 
-`wv2`, the successor to `wv`, can load and parse Word 2000, 97, 95 and 6 file formats. it depends on `zlib`, `libgsf`, `libiconv` and `glib`, which in turns depends on `libffi`  and `libpcre`.
+`wv2`, the successor to `wv`, can load and parse Word 2000, 97, 95 and 6 file formats. it depends on `zlib`, `libgsf`, `libbz2`, `libxml2`, `libiconv` and `glib`, which in turns depends on `libffi`  and `libpcre`.
 
-`doctotext` is a document converter that uses `wv2` to import `.doc` files. additionally it uses `libcharsetdetect`, `htmlcxx`, `libmimetic`, `libbz2`, `libxml2`, `minizip` to support other input formats.
+`doctotext` is a document converter that uses `wv2` to import `.doc` files. additionally it uses `libcharsetdetect`, `htmlcxx`, `libmimetic`, `minizip` to support other input formats. the outout format is always plain text.
 
 ### Dependencies
 
