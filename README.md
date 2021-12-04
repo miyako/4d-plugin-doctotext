@@ -17,6 +17,8 @@ the goal of this project is to support legacy Microsoft Word documents with the 
 
 * [`doctotext`](http://silvercoders.com/en/products/doctotext/) is a document converter that uses `wv2` to import `.doc` files. additionally it uses [`libcharsetdetect`](https://github.com/batterseapower/libcharsetdetect), [`htmlcxx`](http://htmlcxx.sourceforge.net), `libmimetic`, `minizip` to support other input formats. the outout format is always plain text.
   
+* [pthread-win32](https://github.com/GerHobbelt/pthread-win32)  
+  
 ### Features
 
 extract plain text from various file types:
