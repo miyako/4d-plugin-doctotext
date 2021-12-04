@@ -16,7 +16,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			uWypOB2iINf1/9dZnqr9qYjjq+o=
+			mYjfYgqjracg5onCYe2MObzipmI=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -36,21 +36,8 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>MacOS/DocToText</key>
-		<dict>
-			<key>cdhash</key>
-			<data>
-			kRgJEeg+b6qFXw85HHdSHv+PTrw=
-			</data>
-			<key>requirement</key>
-			<string>identifier DocToText and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Y69CWUC25B</string>
-		</dict>
 		<key>QuickLook/Thumbnail.png</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			hC+U8EqvyIRM1lLakHLfvl4V9Tc=
-			</data>
 			<key>hash2</key>
 			<data>
 			nGfrvibB5KlzvZgF4Bra+l0HpRloxismgTLePnOwCdk=
@@ -58,10 +45,6 @@
 		</dict>
 		<key>Resources/COPYING.COM</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			KU49bw/tNzdhDpXRyjzU0IDGIQI=
-			</data>
 			<key>hash2</key>
 			<data>
 			L46joclRDArid+F9jRisS5Qgpff5QU7rQ6cPJaAG6aM=
@@ -69,10 +52,6 @@
 		</dict>
 		<key>Resources/COPYING.GPL</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			hJTYDfbCg4LSOU8OEQaVhXKdH9U=
-			</data>
 			<key>hash2</key>
 			<data>
 			KwyPQz1nLPXF4+QsD872kg7QOIZBzAy7RDhZ2gPt2W0=
@@ -80,23 +59,15 @@
 		</dict>
 		<key>Resources/English.lproj/InfoPlist.strings</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			uWypOB2iINf1/9dZnqr9qYjjq+o=
-			</data>
 			<key>hash2</key>
 			<data>
-			3EcMvcvDb8y7X+a/bVS2QUWAeWcZ2ZzoRX2M8qtDnHM=
+			gT+qQg++42qQqJ4UjpRoEzYfjmPp8n4yxgO9rEsMAOQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
 		<key>Resources/README</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			5AcfXd0k7wSfJFKINk1MdLHvlv8=
-			</data>
 			<key>hash2</key>
 			<data>
 			NrWdKBwGL7YpMu7RyM84CiWJb9u+B5bGPRhewkM9Uqk=
@@ -104,10 +75,6 @@
 		</dict>
 		<key>Resources/constants.xlf</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			VG7260hbOMQThnR3xcrOoaVBd14=
-			</data>
 			<key>hash2</key>
 			<data>
 			rQUqzN4mr+BR99JeofVyKhE9L0JTxYNQx6gA+NZMN8Y=
@@ -115,10 +82,6 @@
 		</dict>
 		<key>Resources/manifest.json</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			9YWXdGH6zQRKfJTLJFr25eRpHx4=
-			</data>
 			<key>hash2</key>
 			<data>
 			EBnVomU1ItvzN91DADasMyzjX06CeIg6e5CTNECz7Ww=
@@ -126,10 +89,6 @@
 		</dict>
 		<key>Windows64/DocToText.4DX</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			pBfaN06pfeXa8PTKIlliiqAOylk=
-			</data>
 			<key>hash2</key>
 			<data>
 			fx2KxYJdyP9C0ukc1vqUvdptvyqFnE5kEOg8aKrcRHw=
