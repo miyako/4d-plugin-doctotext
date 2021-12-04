@@ -31,7 +31,7 @@ extract plain text from various file types:
 ### Syntax
 
 ```4d
-status:=DocToText (path;options;attachments)
+status:=DocToText (document;options;attachments)
 ```
 
 Parameter|Type|Description
