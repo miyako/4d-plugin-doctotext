@@ -12,11 +12,11 @@
 
 #pragma mark -
 
-#if VERSIONWIN
-
 //because we do not init gsf in wv2 class constructer
+
 #define gdf_already_registed gsf_input_get_type()
 
+#if VERSIONWIN
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
 	glib_DllMain(hinstDLL, fdwReason, lpvReserved);
@@ -26,10 +26,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 	return TRUE;
 }
-
 #endif
 
-#if VERSIONWIN
 void OnExit()
 {
 	if (gdf_already_registed) {
@@ -45,7 +43,6 @@ void OnStartup()
 	}
 
 }
-#endif
 
 void PluginMain(PA_long32 selector, PA_PluginParameters params) {
     
@@ -53,7 +50,6 @@ void PluginMain(PA_long32 selector, PA_PluginParameters params) {
     {
         switch(selector)
         {
-#if VERSIONWIN
 		case kInitPlugin:
 		case kServerInitPlugin:
 			OnStartup();
@@ -63,7 +59,7 @@ void PluginMain(PA_long32 selector, PA_PluginParameters params) {
 		case kServerDeinitPlugin:
 			OnExit();
 			break;
-#endif
+                
                 // ---  DocToText
                 
             case 1 :
@@ -100,20 +96,7 @@ static void convert_path(CUTF16String& u16, std::string& u8) {
 }
 
 void DocToText(PA_PluginParameters params) {
-    
-    /*
-     PA_Unistring *u = PA_GetStringParameter(params, 1);
-     CUTF16String u16(u->fString, u->fLength);
-     
-     std::string path;
-     
-     #if VERSIONWIN
-     u16_to_u8(u16, path);
-     #else
-     convert_path(u16, path);
-     #endif
-     */
-    
+        
     PA_ObjectRef status = PA_CreateObject();
     ob_set_b(status, L"success", false);
     
@@ -263,7 +246,6 @@ run_converter:
         std::vector<uint8_t>buf(len);
         bytes = &buf[0];
         PA_GetBlobParameter(params, 1, bytes);
-		bytes = &buf[0];
 
         PlainTextExtractor extractor(parser_type);
         if (verbose)

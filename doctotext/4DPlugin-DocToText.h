@@ -22,7 +22,6 @@
 #include <gsf/gsf-input-memory.h>
 #include <gsf/gsf-input-stdio.h>
 #include <gsf/gsf-input.h>
-
 #include <gsf/gsf-infile-msole.h>
 #include <gsf/gsf-doc-meta-data.h>
 #include <gsf/gsf-msole-utils.h>
