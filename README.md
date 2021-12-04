@@ -1,9 +1,14 @@
+![version](https://img.shields.io/badge/version-18%2B-EB8E5F)
+![platform](https://img.shields.io/static/v1?label=platform&message=mac-intel%20|%20mac-arm%20|%20win-64&color=blue)
+[![license](https://img.shields.io/github/license/miyako/4d-plugin-doctotext)](LICENSE)
+![downloads](https://img.shields.io/github/downloads/miyako/4d-plugin-doctotext/total)
+
 # 4d-plugin-doctotext
 4D implementation of [DocToText](http://silvercoders.com/en/products/doctotext/).
 
 <img width="797" alt="ss" src="https://user-images.githubusercontent.com/1725068/144632527-14f2e26d-db2c-45d8-860e-a677092a8602.png">
 
-### Abstact
+### Abstract
 
 the goal of this project is to support legacy Microsoft Word documents with the `.doc` file extension.
 
@@ -17,6 +22,8 @@ the goal of this project is to support legacy Microsoft Word documents with the 
 
 * [`doctotext`](http://silvercoders.com/en/products/doctotext/) is a document converter that uses `wv2` to import `.doc` files. additionally it uses [`libcharsetdetect`](https://github.com/batterseapower/libcharsetdetect), [`htmlcxx`](http://htmlcxx.sourceforge.net), `libmimetic`, `minizip` to support other input formats. the outout format is always plain text.
   
+* [pthread-win32](https://github.com/GerHobbelt/pthread-win32)  
+  
 ### Features
 
 extract plain text from various file types:
@@ -29,7 +36,7 @@ status:=DocToText (path;options;attachments)
 
 Parameter|Type|Description
 ------------|------|----
-path|Text|platform path
+document|BLOB|
 options|Object|see below
 attachments|Array BLOB|
 status|Object|
@@ -42,5 +49,6 @@ xml | Text |`parse` (default) `fix` `strip`
 table | Text | `table` (default) `row` `col` 
 url | Text | `underscored` (default) `text` `extended` 
 list | Text |` * ` (default) or any string
-verbose | Boolean |
+verbose | Boolean |`false` (default)
+fallback | Boolean |`false` (default)
 format | Text | `.doc` (default) `.rtf` `.docx` `.pptx` `.xlsx` `.fodt` `.fods` `.fodp` `.fodg` `.odt` `.ods` `.odp` `.odg` `.ppt` `.xls` `.xlsb` `.pages` `.numbers` `.key` `.html` `.pdf` `.eml`
