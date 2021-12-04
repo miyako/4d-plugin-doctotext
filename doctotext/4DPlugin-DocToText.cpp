@@ -12,12 +12,58 @@
 
 #pragma mark -
 
+#if VERSIONWIN
+
+//because we do not init gsf in wv2 class constructer
+#define gdf_already_registed gsf_input_get_type()
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
+{
+	glib_DllMain(hinstDLL, fdwReason, lpvReserved);
+	gio_DllMain(hinstDLL, fdwReason, lpvReserved);
+	gobject_DllMain(hinstDLL, fdwReason, lpvReserved);
+	gsf_DllMain(hinstDLL, fdwReason, lpvReserved);
+
+	return TRUE;
+}
+
+#endif
+
+#if VERSIONWIN
+void OnExit()
+{
+	if (gdf_already_registed) {
+		gsf_shutdown();
+	}
+}
+
+void OnStartup()
+{
+
+	if (gdf_already_registed) {
+		gsf_init();
+	}
+
+}
+#endif
+
 void PluginMain(PA_long32 selector, PA_PluginParameters params) {
     
     try
     {
         switch(selector)
         {
+#if VERSIONWIN
+		case kInitPlugin:
+		case kServerInitPlugin:
+			OnStartup();
+			break;
+
+		case kDeinitPlugin:
+		case kServerDeinitPlugin:
+			OnExit();
+			break;
+#endif
                 // ---  DocToText
                 
             case 1 :
@@ -217,7 +263,8 @@ run_converter:
         std::vector<uint8_t>buf(len);
         bytes = &buf[0];
         PA_GetBlobParameter(params, 1, bytes);
-        
+		bytes = &buf[0];
+
         PlainTextExtractor extractor(parser_type);
         if (verbose)
             extractor.setVerboseLogging(true);

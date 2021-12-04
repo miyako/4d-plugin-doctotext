@@ -19,11 +19,28 @@
 #include "metadata.h"
 #include "misc.h"
 
+#include <gsf/gsf-input-memory.h>
+#include <gsf/gsf-input-stdio.h>
+#include <gsf/gsf-input.h>
+
+#include <gsf/gsf-infile-msole.h>
+#include <gsf/gsf-doc-meta-data.h>
+#include <gsf/gsf-msole-utils.h>
+#include <gsf/gsf-utils.h>
+
 #pragma mark -
 
 void DocToText(PA_PluginParameters params);
 
 static void u16_to_u8(CUTF16String& u16, std::string& u8);
 static void u8_to_u16(std::string& u8, CUTF16String& u16);
+
+/* hack to statically link glib */
+#if VERSIONWIN
+extern "C" BOOL glib_DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
+extern "C" BOOL gio_DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
+extern "C" BOOL gobject_DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
+extern "C" BOOL gsf_DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
+#endif
 
 #endif /* PLUGIN_DOCTOTEXT_H */

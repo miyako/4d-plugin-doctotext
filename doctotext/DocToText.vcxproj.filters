@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="4D Plugin API\4DPluginAPI.c">
+      <Filter>4D Plugin API</Filter>
+    </ClCompile>
+    <ClCompile Include="4DPlugin-DocToText.cpp" />
+    <ClCompile Include="src\other\attachment.cpp" />
+    <ClCompile Include="src\other\common_xml_document_parser.cpp" />
+    <ClCompile Include="src\other\data_stream.cpp" />
+    <ClCompile Include="src\other\doctotext_c_api.cpp" />
+    <ClCompile Include="src\other\doctotext_unzip.cpp" />
+    <ClCompile Include="src\other\entities.cpp" />
+    <ClCompile Include="src\other\exception.cpp" />
+    <ClCompile Include="src\other\link.cpp" />
+    <ClCompile Include="src\other\metadata.cpp" />
+    <ClCompile Include="src\other\misc.cpp" />
+    <ClCompile Include="src\other\oshared.cpp" />
+    <ClCompile Include="src\other\plain_text_extractor.cpp" />
+    <ClCompile Include="src\other\thread_safe_ole_storage.cpp" />
+    <ClCompile Include="src\other\thread_safe_ole_stream_reader.cpp" />
+    <ClCompile Include="src\other\tracing.cpp" />
+    <ClCompile Include="src\other\variant.cpp" />
+    <ClCompile Include="src\other\xml_fixer.cpp" />
+    <ClCompile Include="src\other\xml_stream.cpp" />
+    <ClCompile Include="src\parsers\doc_parser.cpp" />
+    <ClCompile Include="src\parsers\eml_parser.cpp" />
+    <ClCompile Include="src\parsers\html_parser.cpp" />
+    <ClCompile Include="src\parsers\iwork_parser.cpp" />
+    <ClCompile Include="src\parsers\odfxml_parser.cpp" />
+    <ClCompile Include="src\parsers\odf_ooxml_parser.cpp" />
+    <ClCompile Include="src\parsers\pdf_parser.cpp" />
+    <ClCompile Include="src\parsers\ppt_parser.cpp" />
+    <ClCompile Include="src\parsers\rtf_parser.cpp" />
+    <ClCompile Include="src\parsers\txt_parser.cpp" />
+    <ClCompile Include="src\parsers\xlsb_parser.cpp" />
+    <ClCompile Include="src\parsers\xls_parser.cpp" />
+    <ClCompile Include="src\list_style.cpp" />
+    <ClCompile Include="support\4DPlugin-JSON.cpp" />
+    <ClCompile Include="minizip\unzip.c" />
+    <ClCompile Include="minizip\iowin32.c" />
+    <ClCompile Include="minizip\ioapi.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="4D Plugin API\4DPluginAPI.h">
+      <Filter>4D Plugin API</Filter>
+    </ClInclude>
+    <ClInclude Include="4D Plugin API\EntryPoints.h">
+      <Filter>4D Plugin API</Filter>
+    </ClInclude>
+    <ClInclude Include="4D Plugin API\Flags.h">
+      <Filter>4D Plugin API</Filter>
+    </ClInclude>
+    <ClInclude Include="4D Plugin API\PrivateTypes.h">
+      <Filter>4D Plugin API</Filter>
+    </ClInclude>
+    <ClInclude Include="4D Plugin API\PublicTypes.h">
+      <Filter>4D Plugin API</Filter>
+    </ClInclude>
+    <ClInclude Include="4DPlugin-DocToText.h" />
+    <ClInclude Include="src\other\attachment.h" />
+    <ClInclude Include="src\other\common_xml_document_parser.h" />
+    <ClInclude Include="src\other\data_stream.h" />
+    <ClInclude Include="src\other\doctotext_c_api.h" />
+    <ClInclude Include="src\other\doctotext_unzip.h" />
+    <ClInclude Include="src\other\entities.h" />
+    <ClInclude Include="src\other\exception.h" />
+    <ClInclude Include="src\other\link.h" />
+    <ClInclude Include="src\other\metadata.h" />
+    <ClInclude Include="src\other\misc.h" />
+    <ClInclude Include="src\other\oshared.h" />
+    <ClInclude Include="src\other\plain_text_extractor.h" />
+    <ClInclude Include="src\other\thread_safe_ole_storage.h" />
+    <ClInclude Include="src\other\thread_safe_ole_stream_reader.h" />
+    <ClInclude Include="src\other\tracing.h" />
+    <ClInclude Include="src\other\variant.h" />
+    <ClInclude Include="src\other\xml_fixer.h" />
+    <ClInclude Include="src\other\xml_stream.h" />
+    <ClInclude Include="src\parsers\doc_parser.h" />
+    <ClInclude Include="src\parsers\eml_parser.h" />
+    <ClInclude Include="src\parsers\html_parser.h" />
+    <ClInclude Include="src\parsers\iwork_parser.h" />
+    <ClInclude Include="src\parsers\odfxml_parser.h" />
+    <ClInclude Include="src\parsers\odf_ooxml_parser.h" />
+    <ClInclude Include="src\parsers\pdf_parser.h" />
+    <ClInclude Include="src\parsers\ppt_parser.h" />
+    <ClInclude Include="src\parsers\rtf_parser.h" />
+    <ClInclude Include="src\parsers\txt_parser.h" />
+    <ClInclude Include="src\parsers\xlsb_parser.h" />
+    <ClInclude Include="src\parsers\xls_parser.h" />
+    <ClInclude Include="src\formatting_style.h" />
+    <ClInclude Include="support\4DPlugin-JSON.h" />
+    <ClInclude Include="minizip\unzip.h" />
+    <ClInclude Include="minizip\iowin32.h" />
+    <ClInclude Include="minizip\ioapi.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="4D Plugin API">
+      <UniqueIdentifier>{51800f7b-66bf-4dcc-8e9f-7fed4ea6fbe9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="4D Plugin API\4DPluginAPI.def">
+      <Filter>4D Plugin API</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
