@@ -6,6 +6,9 @@
 			"formName": "TEST"
 		},
 		{
+			"type": "toolbox"
+		},
+		{
 			"type": "method",
 			"id": 2147483636,
 			"codeDescriptor": {

@@ -227,13 +227,18 @@ static bool parse_comments(const Parser* parser, std::ostream& log_stream, std::
 			return false;
 		}
 		std::string annotation;
-		while (reader->tell() < stream_end_offset - 1)
+        gsf_off_t _pos = reader->tell();
+        gsf_off_t _pos_i = _pos;
+		while (_pos_i < stream_end_offset - 1)
 		{
 			log_stream << "Stream pos " << reader->tell() << "\n";
 			#warning TODO: Unicode support in comments
-			if (unicode)
-				reader->seek(1, (GSeekType)SEEK_CUR); // skip unicode byte
+            if (unicode){
+                reader->seek(1, (GSeekType)SEEK_CUR); // skip unicode byte
+            }
+				
 			S8 ch = reader->readS8();
+            //readS8 does not change the current position if there is an error
 			if (ch >= 32 || (ch >= 8 && ch <= 13))
 			{
 				if (ch == '\r')
@@ -241,6 +246,7 @@ static bool parse_comments(const Parser* parser, std::ostream& log_stream, std::
 				else
 					annotation += ch;
 			}
+            _pos_i++;
 		}
 		log_stream << "Annotation text: \"" << annotation << "\"\n";
 		annotations.push_back(annotation);
