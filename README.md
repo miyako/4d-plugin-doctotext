@@ -5,7 +5,7 @@
 
 ### Dependencies and Licensing
 
-* the source code of this plugin developed using the [4D Plug-in SDK](https://github.com/4d/4D-Plugin-SDK) is licensed under the MIT license
+* the source code of this plugin developed using the [4D Plug-in SDK](https://github.com/4d/4D-Plugin-SDK) is licensed under the MIT license.
 * see [SILVERCODERS](https://silvercoders.com/en/products/doctotext/) for licensing of **DocToText** (GPLv2 or commercial).
 * the licensing of the binary product of this plugin is subject to the licensing of all its dependencies.
 
