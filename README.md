@@ -3,8 +3,14 @@
 [![license](https://img.shields.io/github/license/miyako/4d-plugin-doctotext)](LICENSE)
 ![downloads](https://img.shields.io/github/downloads/miyako/4d-plugin-doctotext/total)
 
+### Dependencies and Licensing
+
+* the source code of this plugin developed using the [4D Plug-in SDK](https://github.com/4d/4D-Plugin-SDK) is licensed under the MIT license
+* see [SILVERCODERS](https://silvercoders.com/en/products/doctotext/) for licensing of **DocToText** (GPLv2 or commercial).
+* the licensing of the binary product of this plugin is subject to the licensing of all its dependencies.
+
 # 4d-plugin-doctotext
-4D implementation of [DocToText](http://silvercoders.com/en/products/doctotext/).
+4D implementation of [DocToText](https://silvercoders.com/en/products/doctotext/).
 
 <img width="797" alt="ss" src="https://user-images.githubusercontent.com/1725068/144632527-14f2e26d-db2c-45d8-860e-a677092a8602.png">
 
