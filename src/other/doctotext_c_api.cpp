@@ -247,7 +247,7 @@ void DOCTOTEXT_CALL doctotext_free_exception(DocToTextException* exception)
 
 size_t DOCTOTEXT_CALL doctotext_exception_error_messages_count(DocToTextException* exception)
 {
-	exception->m_exception.getErrorCount();
+	return exception->m_exception.getErrorCount();
 }
 
 const char* DOCTOTEXT_CALL doctotext_exception_get_error_message(DocToTextException* exception, size_t index_message)
