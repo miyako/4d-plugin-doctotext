@@ -240,7 +240,7 @@ bool DocToTextUnzip::exists(const std::string& file_name) const
 
 bool DocToTextUnzip::read(const std::string& file_name, std::string* contents, int num_of_chars) const
 {
-	#warning TODO: Add support for unzip command if Impl->m_from_memory_buffer == true
+	// #warning TODO: Add support for unzip command if Impl->m_from_memory_buffer == true
 	if (unzip_command != "" && Impl->m_from_memory_buffer == false)
 	{
 		std::string temp_dir = tempnam(NULL, NULL);

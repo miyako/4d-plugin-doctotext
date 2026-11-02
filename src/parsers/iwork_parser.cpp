@@ -52,7 +52,7 @@ static std::string ParseDate(std::string& format, long value)
 {
 	//by default value "0" is "1st january 2001 midnight". At least in iWorks
 	std::ostringstream os;
-	#warning TODO: mktime is not working for some reason... I will use my own function.
+	// #warning TODO: mktime is not working for some reason... I will use my own function.
 	int months_length[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	int hour = 0;
 	int minute = 0;
@@ -2026,7 +2026,7 @@ struct IWorkParser::Implementation
 	IWorkContent::IWorkType getIWorkType(XmlReader& xml_reader)
 	{
 		XmlReader::XmlElement current_element;
-		#warning TODO: Check how encrypted files really look like
+		// #warning TODO: Check how encrypted files really look like
 		while (true)
 		{
 			if (!xml_reader.GetNextElement(current_element))	//root element
@@ -2166,7 +2166,7 @@ bool IWorkParser::isIWork()
 
 void IWorkParser::getLinks(std::vector<Link>& links)
 {
-	#warning TODO: Implement this functionality.
+	// #warning TODO: Implement this functionality.
 }
 
 Metadata IWorkParser::metaData()

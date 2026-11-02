@@ -49,7 +49,7 @@ class ODFXMLParser::CommandHandlersSet
 							  bool& children_processed, std::string& level_suffix, bool first_on_level,
 							  std::vector<Link>& links)
 		{
-			#warning TODO: Unfortunately, in CommonXMLDocumentParser we are not checking full names for xml tags.\
+			// #warning TODO: Unfortunately, in CommonXMLDocumentParser we are not checking full names for xml tags.\
 			Thats a problem, since we can have table:body, office:body etc. What if more xml tags are not handled correctly?
 			if (xml_stream.fullName() != "office:body")
 				return;

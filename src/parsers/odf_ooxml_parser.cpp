@@ -116,7 +116,7 @@ class ODFOOXMLParser::CommandHandlersSet
 			if (parser.verbose())
 				parser.getLogStream() << "OOXML_HEADERFOOTER command.\n";
 			// Ignore headers and footers. They can contain some commands like font settings that can mess up output.
-			#warning TODO: Better headers and footers support
+			// #warning TODO: Better headers and footers support
 			children_processed = true;
 		}
 

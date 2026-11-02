@@ -614,7 +614,7 @@ struct PDFParser::Implementation
 		public:
 			CharacterNames()
 			{
-				#warning TODO: List is incomplete. Can we find something better? Full list in PDFMiner counts about... 2000 names
+				// #warning TODO: List is incomplete. Can we find something better? Full list in PDFMiner counts about... 2000 names
 				insert(std::pair<std::string, unsigned int>(".notdef", 0x0));
 				insert(std::pair<std::string, unsigned int>("A", 0x41));
 				insert(std::pair<std::string, unsigned int>("AE", 0xC386));
@@ -924,7 +924,7 @@ struct PDFParser::Implementation
 				Tc,
 				Tw,
 				Ts,
-				#warning TODO: Add support for operator "Do".
+				// #warning TODO: Add support for operator "Do".
 				Do,
 				usecmap,
 				begincidrange,
@@ -2905,7 +2905,7 @@ struct PDFParser::Implementation
 									case Z_DATA_ERROR:
 									case Z_MEM_ERROR:
 									{
-										#warning TODO: Should I ignore this error and continue? One of the files I had was corrupted, but most data was readable.
+										// #warning TODO: Should I ignore this error and continue? One of the files I had was corrupted, but most data was readable.
 										(void)inflateEnd(&stream);
 										if (predictor)
 											delete predictor;
@@ -4267,7 +4267,7 @@ struct PDFParser::Implementation
 					//Stream data can be included in external file.
 					if ((*stream_dict)["F"])
 					{
-						#warning TODO: Add support for reading from external files
+						// #warning TODO: Add support for reading from external files
 						stream.m_is_in_external_file = true;
 					}
 					else
@@ -6244,7 +6244,7 @@ struct PDFParser::Implementation
 
 				TextElement(double x, double y, double w, double h, double space_size, const std::string& text)
 				{
-					#warning TODO: We have position and size for each string. We can use those values to improve parser
+					// #warning TODO: We have position and size for each string. We can use those values to improve parser
 					m_x = correctSize(x);
 					m_y = correctSize(y);
 					m_text = text;
@@ -6256,7 +6256,7 @@ struct PDFParser::Implementation
 				double correctSize(double value)
 				{
 					//file may be corrupted, we should set some maximum values.
-					#warning TODO: Check MediaBox entry (defines page area)
+					// #warning TODO: Check MediaBox entry (defines page area)
 					if (value < 0)
 						value = 0.0;
 					if (value > 5000)
@@ -6519,7 +6519,7 @@ struct PDFParser::Implementation
 
 			void getText(std::string& output)
 			{
-				#warning TODO: For now we are sorting strings using their x and y positions. Maybe we should implement better algorithms.
+				// #warning TODO: For now we are sorting strings using their x and y positions. Maybe we should implement better algorithms.
 				std::multiset<TextElement>::iterator it = m_text_elements.begin();
 				bool first = true;
 				double x_end, y, x_begin;
@@ -6756,7 +6756,7 @@ struct PDFParser::Implementation
 						}
 					}
 					loadFontDescriptor(font);
-					#warning TODO: Those fonts can be vertical. PDF parser should support that feature
+					// #warning TODO: Those fonts can be vertical. PDF parser should support that feature
 				}
 			}
 		}
@@ -7696,7 +7696,7 @@ bool PDFParser::isPDF()
 
 void PDFParser::getLinks(std::vector<Link>& links)
 {
-	#warning TODO: Implement this functionality
+	// #warning TODO: Implement this functionality
 }
 
 std::string PDFParser::plainText(const FormattingStyle& formatting)

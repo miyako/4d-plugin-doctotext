@@ -46,6 +46,10 @@
 #include "misc.h"
 #include <iostream>
 #include "charsetdetect.h"
+#ifdef _MSC_VER
+#include <string.h>
+#define strcasecmp _stricmp
+#endif
 
 using namespace htmlcxx::HTML;
 
@@ -219,7 +223,7 @@ class DocToTextSaxParser : public ParserSax
 				if (m_converter)
 					text = m_converter->convert(text);
 			}
-			#warning TODO: Check if libxml2 provides such a functionality. Similar function in html library does not work for some entities
+			// #warning TODO: Check if libxml2 provides such a functionality. Similar function in html library does not work for some entities
 			if (m_decoded_buffer_size < text.length() * 2)
 			{
 				if (m_decoded_buffer)
@@ -255,7 +259,7 @@ class DocToTextSaxParser : public ParserSax
 
 		void parseStyleAttributes(const std::string& style, std::map<std::string, std::string>& attributes)
 		{
-			#warning TODO: I have not found similar function in htmlcxx, but my searches were perfunctory
+			// #warning TODO: I have not found similar function in htmlcxx, but my searches were perfunctory
 			bool reading_name = true, reading_value = false;
 			std::string name, value;
 			for (size_t i = 0; i < style.length(); ++i)
@@ -288,7 +292,7 @@ class DocToTextSaxParser : public ParserSax
 
 		void parseCSS()
 		{
-			#warning TODO: CSS selector in htmlcxx is definitely not thread-safe. For now, we only need to know\
+			// #warning TODO: CSS selector in htmlcxx is definitely not thread-safe. For now, we only need to know\
 			about one attribute (list-style). This function only fixes the problem with automatic HTML files\
 			produced by LibreOffice/OpenOffice. Those programs use <ol> and <ul>, but usually turn off\
 			automatic list enumeration (list-style: none), and use own enumeration. So we have a small problem.\

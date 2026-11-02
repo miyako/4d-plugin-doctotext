@@ -157,7 +157,7 @@ struct PPTParser::Implementation
 			{
 				if (m_verbose_logging)
 					*m_log_stream << "RT_MainMaster\n";
-				#warning TODO: Make extracting text from main master slide configurable
+				// #warning TODO: Make extracting text from main master slide configurable
 				unsigned long len = rec_len;
 				if (reader.tell() + len > reader.size())
 				{
@@ -356,7 +356,7 @@ bool PPTParser::isPPT()
 
 void PPTParser::getLinks(std::vector<Link>& links)
 {
-	#warning TODO: Implement this functionality.
+	// #warning TODO: Implement this functionality.
 }
 
 std::string PPTParser::plainText(const FormattingStyle& formatting)
@@ -380,12 +380,12 @@ std::string PPTParser::plainText(const FormattingStyle& formatting)
 	{
 		for (size_t i = 0; i < dirs.size(); ++i)
 		{
-			#warning TODO: Older PPT files (like Microsoft PowerPoint 4.0) have stream named "Text_Content". \
+			// #warning TODO: Older PPT files (like Microsoft PowerPoint 4.0) have stream named "Text_Content". \
 			I have only one file of this type and I cant find any documentation about it. I am not sure \
 			if parsing those files is correct now... but for this one file that I have it works. It should be tested \
 			more, one file is not enough. Stream "Text_Content" does not exist in newer versions of PowerPoint. \
 			In older versions of PowerPoint (the file I have is an example) reading stream "PowerPoint Document" does not work.
-			#warning TODO: Check if there is a better way to get PowerPoint version.
+			// #warning TODO: Check if there is a better way to get PowerPoint version.
 			if (dirs[i] == "Text_Content")
 			{
 				ThreadSafeOLEStreamReader* reader = (ThreadSafeOLEStreamReader*)storage->createStreamReader("Text_Content");

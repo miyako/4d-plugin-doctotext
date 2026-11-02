@@ -1106,7 +1106,7 @@ bool PlainTextExtractor::processFile(ParserType parser_type, bool fallback, cons
 bool get_file_owner(const std::string& file_name, std::ostream& log_stream, std::string& owner)
 {
 	#ifdef WIN32
-		HANDLE file = CreateFile(file_name.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		HANDLE file = CreateFileA(file_name.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if (file == INVALID_HANDLE_VALUE)
 		{
 			log_stream << "Error opening file \"" << file_name << "\" for getting owner information.\n";
@@ -1122,30 +1122,30 @@ bool get_file_owner(const std::string& file_name, std::ostream& log_stream, std:
 			log_stream << "Error getting owner SID.\n";
 			return false;
 		}
-		LPTSTR account_name = NULL;
-		LPTSTR domain_name = NULL;
+		LPSTR account_name = NULL;
+		LPSTR domain_name = NULL;
 		DWORD account_name_size = 0;
 		DWORD domain_name_size = 0;
 		SID_NAME_USE sid_type;
-		BOOL res = LookupAccountSid(NULL, sid_owner, account_name, (LPDWORD)&account_name_size, domain_name, (LPDWORD)&domain_name_size, &sid_type);
+		BOOL res = LookupAccountSidA(NULL, sid_owner, account_name, (LPDWORD)&account_name_size, domain_name, (LPDWORD)&domain_name_size, &sid_type);
 		if (!res && GetLastError() != ERROR_INSUFFICIENT_BUFFER)
 		{
 			log_stream << "Error getting buffer sizes.\n";
 			return false;
 		}
-		account_name = (LPTSTR)GlobalAlloc(GMEM_FIXED, account_name_size);
+		account_name = (LPSTR)GlobalAlloc(GMEM_FIXED, account_name_size);
 		if (account_name == NULL)
 		{
 			log_stream << "Error allocating memory.\n";
 			return false;
 		}
-		domain_name = (LPTSTR)GlobalAlloc(GMEM_FIXED, domain_name_size);
+		domain_name = (LPSTR)GlobalAlloc(GMEM_FIXED, domain_name_size);
 		if (domain_name == NULL)
 		{
 			log_stream << "Error allocating memory.\n";
 			return false;
 		}
-		res = LookupAccountSid(NULL, sid_owner, account_name, (LPDWORD)&account_name_size, domain_name, (LPDWORD)&domain_name_size, &sid_type);
+		res = LookupAccountSidA(NULL, sid_owner, account_name, (LPDWORD)&account_name_size, domain_name, (LPDWORD)&domain_name_size, &sid_type);
 		GlobalFree(domain_name);
 		if (!res)
 		{
@@ -1350,7 +1350,7 @@ bool PlainTextExtractor::extractMetadata(ParserType parser_type, bool fallback, 
 		metadata.setCreationDateType(Metadata::EXTRACTED);
 	else
 	{
-		#warning TODO: It is possible that st_ctime can be used on win32.
+		// #warning TODO: It is possible that st_ctime can be used on win32.
 		tm creation_date;
 		if (!get_file_modification_time(file_name, *impl->m_log_stream, creation_date))
 			return false;

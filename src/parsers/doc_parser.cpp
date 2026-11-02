@@ -232,7 +232,7 @@ static bool parse_comments(const Parser* parser, std::ostream& log_stream, std::
 		while (_pos_i < stream_end_offset - 1)
 		{
 			log_stream << "Stream pos " << reader->tell() << "\n";
-			#warning TODO: Unicode support in comments
+			// #warning TODO: Unicode support in comments
             if (unicode){
                 reader->seek(1, (GSeekType)SEEK_CUR); // skip unicode byte
             }
@@ -701,7 +701,7 @@ bool DOCParser::isDOC()
 
 void DOCParser::getLinks(std::vector<Link>& links)
 {
-	#warning TODO: Implement this functionality.
+	// #warning TODO: Implement this functionality.
 }
 
 std::string DOCParser::plainText(const FormattingStyle& formatting)

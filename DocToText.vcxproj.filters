@@ -103,6 +103,5 @@
     <None Include="4D Plugin API\4DPluginAPI.def">
       <Filter>4D Plugin API</Filter>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

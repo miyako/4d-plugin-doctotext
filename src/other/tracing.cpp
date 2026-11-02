@@ -67,7 +67,7 @@ static void trace_func(bool call, void* func, void* caller)
 		level--;
 	if (file != NULL)
 	{
-		#warning TODO: Make this thread safe and add thread id to output.
+		// #warning TODO: Make this thread safe and add thread id to output.
 		fprintf(file, "%i %c %p %p\n", level, call ? 'C' : 'R', func, caller);
 		fflush(file);
 	}

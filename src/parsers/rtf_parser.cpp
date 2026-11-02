@@ -118,7 +118,7 @@ bool RTFParser::isRTF()
 
 void RTFParser::getLinks(std::vector<Link>& links)
 {
-	#warning TODO: Implement this functionality.
+	// #warning TODO: Implement this functionality.
 }
 
 #define RTFNAMEMAXLEN 32

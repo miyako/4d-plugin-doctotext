@@ -238,7 +238,7 @@ struct XLSParser::Implementation
 			0x0204      2-7     ->  2 byte      16-bit length, byte string
 			0x0204      8       ->  2 byte      16-bit length, unicode string
 		*/
-		#warning TODO: Add support for record 0x0004 (in BIFF2).
+		// #warning TODO: Add support for record 0x0004 (in BIFF2).
 		if (src_end - *src < 2)
 		{
 			*m_log_stream << "Unexpected end of buffer.\n";
@@ -342,7 +342,7 @@ struct XLSParser::Implementation
 					return dest;
 				}
 				unsigned int uc = getU16LittleEndian(s);
-				#warning TODO: Find explanation (documentation) of NULL characters (OO skips them).
+				// #warning TODO: Find explanation (documentation) of NULL characters (OO skips them).
 				if (uc == 0)
 					continue;
 				if (utf16_unichar_has_4_bytes(uc))
@@ -435,8 +435,8 @@ struct XLSParser::Implementation
 			{
 				m_last_row = 0;
 				m_last_col = 0;
-				#warning TODO: Check for stream type, ignore charts, or make it configurable
-				#warning TODO: Mark beginning of sheet (configurable)
+				// #warning TODO: Check for stream type, ignore charts, or make it configurable
+				// #warning TODO: Mark beginning of sheet (configurable)
 				break;
 			}
 			case XLS_CODEPAGE:
@@ -470,7 +470,7 @@ struct XLSParser::Implementation
 			case XLS_EOF:
 			{
 				text += "\n";
-				#warning TODO: Mark end of sheet (configurable)
+				// #warning TODO: Mark end of sheet (configurable)
 				break;
 			}
 			case XLS_FILEPASS:
@@ -514,7 +514,7 @@ struct XLSParser::Implementation
 					}
 					else if (rec[6] == 1)
 					{
-						#warning TODO: check and test boolean formulas
+						// #warning TODO: check and test boolean formulas
 						text += (rec[8] ? "TRUE" : "FALSE");
 					}
 					else if (rec[6] == 2)
@@ -680,7 +680,7 @@ struct XLSParser::Implementation
 			if (rec_type == BOF_BIFF_2 || rec_type == BOF_BIFF_3 || rec_type == BOF_BIFF_4 || rec_type == BOF_BIFF_5_AND_8)
 			{
 				int bof_struct_size;
-				#warning Has all BOF records size 8 or 16?
+				// #warning Has all BOF records size 8 or 16?
 				if (rec_len == 8 || rec_len == 16)
 				{
 					switch (rec_type)
@@ -890,7 +890,7 @@ bool XLSParser::isXLS()
 
 void XLSParser::getLinks(std::vector<Link>& links)
 {
-	#warning TODO: Implement this functionality.
+	// #warning TODO: Implement this functionality.
 }
 
 std::string XLSParser::plainText(const FormattingStyle& formatting)

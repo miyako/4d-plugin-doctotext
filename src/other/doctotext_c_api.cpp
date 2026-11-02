@@ -46,7 +46,7 @@ using namespace doctotext;
 extern "C"
 {
 
-#warning TODO: FILE structure (outside doctotext library) cannot be used, because of the cross-compilers problems \
+// #warning TODO: FILE structure (outside doctotext library) cannot be used, because of the cross-compilers problems \
 (for example, MinGW with MSVC). Either file descriptors dont work. For now we only support logging to the external file.\
 But in the future, maybe we will manage to force FILE struct to work properly. So StreamBuf is still in use.
 

@@ -36,7 +36,16 @@
 
 #include <iostream>
 #include <libxml/xmlreader.h>
+#ifdef _WIN32
+// No pthreads on Windows (MSVC): a statically initialised SRW lock does the same job
+#include <windows.h>
+typedef SRWLOCK pthread_mutex_t;
+#define PTHREAD_MUTEX_INITIALIZER SRWLOCK_INIT
+#define pthread_mutex_lock(m) AcquireSRWLockExclusive(m)
+#define pthread_mutex_unlock(m) ReleaseSRWLockExclusive(m)
+#else
 #include "pthread.h"
+#endif
 
 #undef XML_STREAM_DEBUG
 
@@ -71,7 +80,7 @@ static void cleanupXmlParser()
 	pthread_mutex_unlock(&xml_parser_usage_counter_mutex);
 }
 
-#warning TODO: Maybe it will be good direction if XmlStream will not require loading whole xml data at once? For now\
+// #warning TODO: Maybe it will be good direction if XmlStream will not require loading whole xml data at once? For now\
 	if we want to parse one of OOXML/ODF/ODFXML files we need to load whole file into memory at once. It would be good\
 	if XmlStream was more frugal
 
@@ -184,7 +193,7 @@ void XmlStream::levelDown()
 	#ifdef XML_STREAM_DEBUG
 		std::cerr << "# levelDown(). curr_depth=" << impl->m_curr_depth << "\n";
 	#endif
-	#warning TODO: <a></a> is not empty according to xmlTextReaderIsEmptyElement(). Check if it is a problem.
+	// #warning TODO: <a></a> is not empty according to xmlTextReaderIsEmptyElement(). Check if it is a problem.
 	if (xmlTextReaderIsEmptyElement(impl->m_reader) != 0)
 	{
 		impl->m_badbit = true;
