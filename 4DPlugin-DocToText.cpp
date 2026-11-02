@@ -114,6 +114,8 @@ void DocToText(PA_PluginParameters params) {
     fmt.list_style.setPrefix(" * ");
     fmt.url_style = URL_STYLE_UNDERSCORED;
     
+    try {
+        
     PA_ObjectRef options = PA_GetObjectParameter(params, 2);
     
     if(options) {
@@ -133,7 +135,7 @@ void DocToText(PA_PluginParameters params) {
             if(table == (const uint8_t *)"row"){
                 fmt.table_style = TABLE_STYLE_ONE_ROW;
             }
-            if(xml == (const uint8_t *)"col"){
+            if(table == (const uint8_t *)"col"){
                 fmt.table_style = TABLE_STYLE_ONE_COL;
             }
         }
@@ -298,7 +300,7 @@ run_converter:
                     ob_set_s(a, L"name", attachments[i].filename());
                     ob_set_n(a, L"data", i);
                     
-                    PA_Variable element = PA_CreateVariable(eVK_Blob);
+                    PA_Variable element = PA_CreateVariable(eVK_Undefined); // eVK_Blob would allocate a handle that PA_SetBlobVariable overwrites (leak)
                     PA_SetBlobVariable(&element,
                                        (void *)attachments[i].binaryContent(),
                                        attachments[i].binaryContentSize());
@@ -350,7 +352,18 @@ run_converter:
         
     }
     
-    PA_SetVariableParameter(params, 3, Param3, 0);
+    }
+    catch (const std::exception& e) {
+        // PluginMain's catch(...) would swallow it before PA_ReturnObject: 4D would wait forever
+        ob_set_b(status, L"success", false);
+        ob_set_s(status, L"error", e.what());
+    }
+    catch (...) {
+        ob_set_b(status, L"success", false);
+        ob_set_s(status, L"error", "unexpected exception");
+    }
+    
+    PA_SetVariableParameter(params, 3, Param3, 1); // 1: dispose the array previously held by the caller's variable
     PA_ReturnObject(params, status);
 }
 
