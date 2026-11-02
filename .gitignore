@@ -1,3 +1,9 @@
-doctotext/test/userPreferences.*
-doctotext/test/Project/DerivedData/*
-doctotext/test/Data/*
+.DS_Store
+build/
+Objs/
+test/userPreferences.*
+test/Project/DerivedData/
+test/Data/
+test/Logs/
+test/Plugins/DocToText.bundle/Contents/MacOS/DocToText
+test/Plugins/DocToText.bundle/Contents/_CodeSignature/
