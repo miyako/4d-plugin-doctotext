@@ -92,7 +92,7 @@ Property | Type | Description
 
 There is no `format` value for plain text files (`.txt`). With `fallback` set to `True`, the content detection may still select the text parser.
 
-**`table` = `col`** only works in builds made after 1.3.0. In 1.3.0 and earlier, `col` was ignored and the default `table` layout was used.
+**`table` = `col`** works from 1.3.4. In 1.3.0 and earlier, `col` was ignored and the default `table` layout was used.
 
 ### Result object
 
@@ -103,7 +103,7 @@ Property | Type | Description
 `links` | `Collection` | Hyperlinks found in the document, see below. Only when `success` is `True` (can be empty)
 `attachments` | `Collection` | Attachments of an e-mail message, see below. Only when `success` is `True` (empty for other formats)
 `meta` | `Object` | Document metadata, see below. Only when metadata could be read
-`error` | `Text` | Message of an unexpected exception raised while parsing. Only in builds made after 1.3.0; earlier versions returned no result in that case
+`error` | `Text` | Message of an unexpected exception raised while parsing. Only from 1.3.4; earlier versions returned no result in that case
 
 Each element of `links`:
 
@@ -228,7 +228,7 @@ The attachment `name` comes from the message itself: check it before you use it 
 ## Error handling & troubleshooting
 
 * **`success` is `False` for a valid document**: `format` is missing or wrong, so the default `.doc` parser was used. Pass the extension with the dot (`".docx"`, not `"docx"` or `".DOCX"`), or add `"fallback"; True`.
-* **`text` is empty although `success` is `True`**: the document has no extractable text, for example a scanned PDF without a text layer. It also happens when the extracted text is not valid UTF-8: the whole value is then returned as `""`. In builds made after 1.3.0 this is also the case on Windows, where invalid bytes used to become U+FFFD.
+* **`text` is empty although `success` is `True`**: the document has no extractable text, for example a scanned PDF without a text layer. It also happens when the extracted text is not valid UTF-8: the whole value is then returned as `""`. From 1.3.4 this is also the case on Windows, where invalid bytes used to become U+FFFD.
 * **`error` is present**: the library raised an exception; `success` is `False` and the message comes from the library.
 * **One attachment but `Size of array` is `0`**: attachments start at element 0. Use the `data` property as the index.
 * **The attachments array was emptied**: the third parameter is replaced on every call, even for formats that have no attachments.
