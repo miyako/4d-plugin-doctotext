@@ -2,6 +2,7 @@
 #define DOCTOTEXT_OSHARED_H
 
 #include <iosfwd>
+#include <string>
 
 namespace doctotext
 {

@@ -652,7 +652,7 @@ std::string RTFParser::plainText()
 
 static void parse_rtf_time(const std::string& s, tm& time)
 {
-	time = (tm){0};
+	time = tm();
 	size_t p2 = s.find("\\yr");
 	if (p2 != std::string::npos)
 	{

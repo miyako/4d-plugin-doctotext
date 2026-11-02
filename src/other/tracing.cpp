@@ -37,6 +37,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef _MSC_VER
+// GCC function attributes (no_instrument_function, destructor) do not exist in MSVC
+#define __attribute__(x)
+#endif
+
 static int level = 0;
 static FILE* file = NULL;
 

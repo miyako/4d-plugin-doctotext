@@ -59,9 +59,9 @@ Metadata::Metadata()
 	impl->author_type = NONE;
 	impl->last_modified_by_type = NONE;
 	impl->creation_date_type = NONE;
-	impl->creation_date = (tm){0};
+	impl->creation_date = tm();
 	impl->last_modification_date_type = NONE;
-	impl->last_modification_date = (tm){0};
+	impl->last_modification_date = tm();
 	impl->page_count_type = NONE;
 	impl->page_count = -1;
 	impl->word_count_type = NONE;

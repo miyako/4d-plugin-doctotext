@@ -128,7 +128,7 @@ static bool read_vt_filetime(ThreadSafeOLEStreamReader* reader, std::ostream& lo
 	{
 		// Sometimes field exists but date is zero.
 		// Last modification time saved by LibreOffice 3.5 when document is created is an example.
-		time = (tm){0};
+		time = tm();
 		return true;
 	}
 	unsigned long long int file_time = ((unsigned long long int)file_time_high << 32) | (unsigned long long int)file_time_low;
